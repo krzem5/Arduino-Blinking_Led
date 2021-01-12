@@ -1,16 +1,24 @@
+#define LED_PIN 12
+#define BLINK_INTERVAL 1000
+
+
+
+int ls=LOW;
+uint32_t lt=0;
+
+
+
 void setup(){
-	pinMode(12,OUTPUT);
+	pinMode(LED_PIN,OUTPUT);
 }
 
 
 
 void loop(){
-	digitalWrite(12,HIGH);
-	delay(150);
-	digitalWrite(12,LOW);
-	delay(150);
-	digitalWrite(12,HIGH);
-	delay(150);
-	digitalWrite(12,LOW);
-	delay(550);
+	uint32_t t=millis();
+	if (t-lt>BLINK_INTERVAL){
+		lt=t;
+		ls=(ls==LOW?HIGH:LOW);
+		digitalWrite(LED_PIN,ls);
+	}
 }
